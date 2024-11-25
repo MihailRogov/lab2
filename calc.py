@@ -13,7 +13,7 @@ class ScientificCalculator:
         # Кнопки
         self.create_buttons()
 
-   def create_buttons(self):
+    def create_buttons(self):
         buttons = [
             ("7", 1, 0),
             ("8", 1, 1),
@@ -50,4 +50,16 @@ class ScientificCalculator:
                 bd=5,
                 command=lambda t=text: self.on_button_click(t),
             ).grid(row=row, column=col, sticky="we", padx=5, pady=5)
-     
+    
+    def on_button_click(self, char):
+        if char == "C":
+            self.input_field.delete(0, tk.END)
+        elif char == "=":
+            self.calculate()
+        elif char == "pi":
+            self.input_field.insert(tk.END, str(pi))
+        elif char == "e":
+            self.input_field.insert(tk.END, str(e))
+        else:
+            self.input_field.insert(tk.END, char)
+  
