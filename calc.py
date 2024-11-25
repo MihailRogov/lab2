@@ -63,3 +63,30 @@ class ScientificCalculator:
         else:
             self.input_field.insert(tk.END, char)
   
+    def calculate(self):
+        expression = self.input_field.get()
+        expression = self.format_expression(expression)
+        expression = expression.replace("^", "**")  # Поддержка возведения в степень
+
+        try:
+            safe_globals = {
+                "sin": sin,
+                "cos": cos,
+                "tan": tan,
+                "log": log,
+                "sqrt": sqrt,
+                "pi": pi,
+                "e": e
+            }
+            result = eval(expression, safe_globals)
+            self.input_field.delete(0, tk.END)
+            self.input_field.insert(tk.END, str(result))
+        except SyntaxError:
+            self.input_field.delete(0, tk.END)
+            self.input_field.insert(tk.END, "Ошибка: Синтаксис")
+        except ZeroDivisionError:
+            self.input_field.delete(0, tk.END)
+            self.input_field.insert(tk.END, "Ошибка: Деление на 0")
+        except Exception as error:
+            self.input_field.delete(0, tk.END)
+            self.input_field.insert(tk.END, f"Ошибка: {error}")
