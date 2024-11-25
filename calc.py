@@ -90,3 +90,17 @@ class ScientificCalculator:
         except Exception as error:
             self.input_field.delete(0, tk.END)
             self.input_field.insert(tk.END, f"Ошибка: {error}")
+    
+    def format_expression(self, expression):
+        import re
+        # Шаблон для поиска функций и чисел
+        pattern = r"(?<!\w)(sin|cos|tan|log|sqrt|exp|abs)(\d+(\.\d+)?)"
+        formatted_expression = re.sub(pattern, r"\1(\2)", expression)
+        return formatted_expression
+
+
+# Запуск приложения
+if __name__ == "__main__":
+    root = tk.Tk()
+    calc = ScientificCalculator(root)
+    root.mainloop()
