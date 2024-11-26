@@ -5,10 +5,10 @@ class ScientificCalculator:
     def __init__(self, root):
         self.root = root
         self.root.title("Научный калькулятор")
-        self.root.geometry("380x380")
+        self.root.geometry("380x410")
 
         # Поле для ввода
-        self.input_field = tk.Entry(root, font=("Arial", 20), justify="right")
+        self.input_field = tk.Entry(root, font=("Comic Sans MS", 20), justify="right")
         self.input_field.grid(row=0, column=0, columnspan=5, sticky="we")
         # Кнопки
         self.create_buttons()
@@ -46,8 +46,8 @@ class ScientificCalculator:
             tk.Button(
                 self.root,
                 text=text,
-                font=("Arial", 18),
-                bd=5,
+                font=("Comic Sans MS", 18),
+                activebackground="red",
                 command=lambda t=text: self.on_button_click(t),
             ).grid(row=row, column=col, sticky="we", padx=5, pady=5)
     
@@ -94,7 +94,7 @@ class ScientificCalculator:
     def format_expression(self, expression):
         import re
         # Шаблон для поиска функций и чисел
-        pattern = r"(?<!\w)(sin|cos|tan|log|sqrt|exp|abs)(\d+(\.\d+)?)"
+        pattern = r"(?<!\w)(sin|cos|tan|log|sqrt)(\d+(\.\d+)?)"
         formatted_expression = re.sub(pattern, r"\1(\2)", expression)
         return formatted_expression
 
