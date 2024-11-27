@@ -6,12 +6,16 @@ class ScientificCalculator:
         self.root = root
         self.root.title("Научный калькулятор")
         self.root.geometry("380x410")
-
         # Поле для ввода
         self.input_field = tk.Entry(root, font=("Comic Sans MS", 20), justify="right")
         self.input_field.grid(row=0, column=0, columnspan=5, sticky="we")
         # Кнопки
         self.create_buttons()
+        num_rows, num_cols = root.grid_size()
+        for row in range(num_rows):
+            root.rowconfigure(row, weight=1)
+        for col in range(num_cols):
+            root.columnconfigure(col, weight=1)
 
     def create_buttons(self):
         buttons = [
@@ -49,7 +53,7 @@ class ScientificCalculator:
                 font=("Comic Sans MS", 18),
                 activebackground="red",
                 command=lambda t=text: self.on_button_click(t),
-            ).grid(row=row, column=col, sticky="we", padx=5, pady=5)
+            ).grid(row=row, column=col, sticky="nsew", padx=5, pady=5)
     
     def on_button_click(self, char):
         if char == "C":
