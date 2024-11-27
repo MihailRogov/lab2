@@ -1,5 +1,5 @@
 import tkinter as tk
-from math import sin, cos, tan, log, sqrt, pi, e
+from math import *
 
 class ScientificCalculator:
     def __init__(self, root):
