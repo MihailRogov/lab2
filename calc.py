@@ -69,16 +69,7 @@ class ScientificCalculator:
         expression = expression.replace("^", "**")  # Поддержка возведения в степень
 
         try:
-            safe_globals = {
-                "sin": sin,
-                "cos": cos,
-                "tan": tan,
-                "log": log,
-                "sqrt": sqrt,
-                "pi": pi,
-                "e": e
-            }
-            result = eval(expression, safe_globals)
+            result = eval(expression)
             self.input_field.delete(0, tk.END)
             self.input_field.insert(tk.END, str(result))
         except SyntaxError:
